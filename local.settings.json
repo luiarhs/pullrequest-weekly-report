@@ -3,6 +3,8 @@
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
-    "AzureWebJobsStorage": ""
+    "AzureWebJobsStorage": "",
+    "GITHUB_URL": "https://api.github.com/graphql",
+    "GITHUB_TOKEN": ""
   }
 }
