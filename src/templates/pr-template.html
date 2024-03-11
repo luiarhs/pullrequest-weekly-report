@@ -6,22 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <style type="text/css">
-    body,p,
+    body,
+    p,
     div {
       font-family: inherit;
       font-size: 14px;
     }
+
     body {
       color: #0033a0;
     }
+
     body a {
       color: #0033a0;
       text-decoration: none;
     }
+
     p {
       margin: 0;
       padding: 0;
     }
+
     table.wrapper {
       width: 100% !important;
       table-layout: fixed;
@@ -30,54 +35,69 @@
       -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
     }
+
     img.max-width {
       max-width: 100% !important;
     }
+
     .column.of-2 {
       width: 50%;
     }
+
     .column.of-3 {
       width: 33.333%;
     }
+
     .column.of-4 {
       width: 25%;
     }
+
     ul ul ul ul {
       list-style-type: disc !important;
     }
+
     ol ol {
       list-style-type: lower-roman !important;
     }
+
     ol ol ol {
       list-style-type: lower-latin !important;
     }
+
     ol ol ol ol {
       list-style-type: decimal !important;
     }
+
     @media screen and (max-width:480px) {
+
       .preheader .rightColumnContent,
       .footer .rightColumnContent {
         text-align: left !important;
       }
+
       .preheader .rightColumnContent div,
       .preheader .rightColumnContent span,
       .footer .rightColumnContent div,
       .footer .rightColumnContent span {
         text-align: left !important;
       }
+
       .preheader .rightColumnContent,
       .preheader .leftColumnContent {
         font-size: 80% !important;
         padding: 5px 0;
       }
+
       table.wrapper-mobile {
         width: 100% !important;
         table-layout: fixed;
       }
+
       img.max-width {
         height: auto !important;
         max-width: 100% !important;
       }
+
       a.bulletproof-button {
         display: block !important;
         width: auto !important;
@@ -85,9 +105,11 @@
         padding-left: 0 !important;
         padding-right: 0 !important;
       }
+
       .columns {
         width: 100% !important;
       }
+
       .column {
         display: block !important;
         width: 100% !important;
@@ -96,6 +118,7 @@
         margin-left: 0 !important;
         margin-right: 0 !important;
       }
+
       .social-icon-column {
         display: inline-block !important;
       }
@@ -115,39 +138,43 @@
     <div class="webkit">
       <table cellpadding="0" cellspacing="0" border="0" width="100%" class="wrapper" bgcolor="#f0f0f0">
         <tr>
-          <td valign="top"  width="100%">
-            <table width="100%" role="content-container" class="outer" data-wrapper-width="100%" cellspacing="0" cellpadding="0" border="0">
+          <td valign="top" width="100%">
+            <table width="100%" role="content-container" class="outer" data-wrapper-width="100%" cellspacing="0"
+              cellpadding="0" border="0">
               <tr>
                 <td width="100%">
                   <table width="100%" bgcolor="#cc26b0" cellpadding="0" cellspacing="0" border="0">
                     <tr>
                       <td style="padding:16px 32px; line-height:40px; text-align:inherit;">
-                        <h1>Weekly Summary ${data.name}</h1>
-                        <h3 style="color: #ffffff;">Here is a summary of the pull requests that were created in the last week.</h3>
+                        <h1 style="color: #0033a0">Weekly Summary</h1>
+                        <h3 style="color: #ffffff;">Here is a summary of the pull requests that were created in the last
+                          week.</h3>
                       </td>
                     </tr>
-                    
                   </table>
-                  <table class="divider-content" role="content-container" cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tr style="color: #415364;">
+                  <table class="divider-content" role="content-container" cellspacing="0" cellpadding="0" border="0"
+                    width="100%">
+                    <tr style="color: #0033a0;">
                       <td style="padding:10px;"><strong>Title</strong></td>
                       <td style="padding:10px;"><strong>Author</strong></td>
                       <td style="padding:10px;"><strong>State</strong></td>
                       <td style="padding:10px;"><strong>Created At</strong></td>
-                      <td style="padding:10px;"><strong>View it on GitHub</strong></td>
+                      <td style="padding:10px;"><strong>Link</strong></td>
                     </tr>
-                  </table>
-                  <tr>
-                    <td style="padding:0px 0px 3px 0px;" bgcolor="#cc26b0"></td>
-                  </tr>
-                  <table class="divider-content" role="content-container" cellspacing="0" cellpadding="0" border="0" width="100%">
-                  <!-- End header section -->
-                    <tr>
-                      <td style="padding:10px;">${data.title}</td>
-                      <td style="padding:10px;">${data.login}</td>
-                      <td style="padding:10px;">${data.state}</td>
-                      <td style="padding:10px;">${data.createdAt}</td>
-                      <td style="padding:10px;"><a href="${data.permalink}" target="_blank">View it on GitHub</a></td>
+                    <!-- End header section -->
+                    <tr style="color: #304254">
+                      <td style="padding:10px;">${pull.title}</td>
+                      <td style="padding:10px;">
+                        <img class="max-width" border="0" align="left" style="display:block; border-radius: 50%;"
+                          height="16" width="16" data-proportionally-constrained="true" data-responsive="false"
+                          src="${pull.avatarlink}">
+                        &nbsp;@${pull.login}
+                      </td>
+                      <td style="padding:10px; text-decoration: none; color: ${color};">${state}</td>
+                      <td style="padding:10px;">${pull.createdAt}</td>
+                      <td style="padding:10px; text-decoration: none;">
+                        <a href="${pull.permalink}" target="_blank">View it on GitHub</a>
+                      </td>
                     </tr>
                     <!-- Start footer seection -->
                   </table>
