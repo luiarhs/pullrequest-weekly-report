@@ -133,7 +133,10 @@ let header = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://w
                       <td style="padding:10px;"><strong>Author</strong></td>
                       <td style="padding:10px;"><strong>State</strong></td>
                       <td style="padding:10px;"><strong>Created At</strong></td>
-                      <td style="padding:10px;"><strong>Link</strong></td>
+                      <td style="padding:10px;">
+                        <img class="max-width" border="0" align="left" style="display:block; border-radius: 50%;"
+                          height="20" width="20" data-proportionally-constrained="true" data-responsive="false"
+                          src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"></td>
                     </tr>`;
 
 module.exports = header;
