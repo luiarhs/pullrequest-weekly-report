@@ -1,31 +1,29 @@
 const { app } = require("@azure/functions");
 const { Octokit } = require("@octokit/core");
+const email = require("../utils/email");
 
 app.http("PullRequestReport", {
 	methods: ["POST"],
 	authLevel: "anonymous",
-    route: 'report/',
+    route: 'report/{owner:alpha}/{repo:alpha}',
 	handler: async (request, context) => {
 		context.log(`Http function processed request for url "${request.url}"`);
 
-		//TODO: Validate email address and send email
-		const octokit = new Octokit();
+		const octokit = new Octokit({
+            auth: `${process.env.GITHUB_TOKEN}`
+        });
 
 		try {
 			// TODO: Make variables configurable as function input or environment variables
-			const owner = "brave";
-			const repo = "security-action";
+			const repo = request.params.repo;
+			const owner = request.params.owner;
 
 			// Filter pull requests created in the last week
 			const lastWeek = new Date();
 			lastWeek.setDate(lastWeek.getDate() - 7);
 
-			const data = await octokit.graphql({
-				headers: {
-					accept: 'application/vnd.github+json',
-					authorization: `token ${process.env.GITHUB_TOKEN}`
-				},
-				query: `query Search {
+			const data = await octokit.graphql(
+				`query Search {
 					search(
 						query: "repo:${owner}/${repo} type:pr created:>${lastWeek.toISOString()}",
 						type: ISSUE
@@ -36,34 +34,48 @@ app.http("PullRequestReport", {
 							... on PullRequest {
 								author {
 									login
-									url
+									avatarUrl(size: 32)
 								}
-								baseRefName
 								createdAt
 								isDraft
 								permalink
 								state
 								title
-								url
 							}
 						}
 					}
 				}`
+			);
+
+			// Map data to a more readable format
+			const pulls = data.search.nodes.map((pull) => {
+				return {
+					avatarlink: pull.author.avatarUrl,
+					login: pull.author.login,
+					createdAt: pull.createdAt.split("T")[0],
+					isDraft: pull.isDraft,
+					permalink: pull.permalink,
+					state: pull.state,
+					title: pull.title,
+				};
 			});
 
-			context.log(data);
+			// Send email
+			await email.send(context, {to: "luiarhs@gmail.com", repo, pulls});
+
 		} catch (error) {
 			if (error instanceof GraphqlResponseError) {
-				console.log("Request failed:", error.request); // { query, variables: {}, headers: { authorization: 'token secret123' } }
-				console.log(error.message); // Field 'bioHtml' doesn't exist on type 'User'
+				console.log("Request failed:", error.request);
+				console.error(error.message);
 			} else {
-				// handle non-GraphQL error
+				//TODO: handle non-GraphQL error
 			}
 			context.log(
 				`Error! Status: ${error.status}. Message: ${error.response.data.message}`
 			);
+			return { status: 500, body: error.response.data.message || "Error! Email not sent."};
 		}
 
-		return { body: repository };
-	},
+		return { status: 200, body: "Email sent!"};
+	}
 });
