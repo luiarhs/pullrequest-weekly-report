@@ -32,7 +32,7 @@ async function send(context, parameters) {
                     <td style="padding:10px;">${pull.title}</td>
                     <td style="padding:10px;">
                         <img class="max-width" border="0" align="left" style="display:block; border-radius: 50%;"
-                        height="16" width="16" data-proportionally-constrained="true" data-responsive="false"
+                        height="18" width="18" data-proportionally-constrained="true" data-responsive="false"
                         src="${pull.avatarlink}">
                         &nbsp;@${pull.login}
                     </td>
@@ -48,7 +48,7 @@ async function send(context, parameters) {
 
         const msg = {
             to,
-            from: `${process.env.SENDGRID_SENDER_EMAIL}`,
+            from: `${process.env.SENDGRID_FROM_EMAIL}`,
             subject: `Your Weekly Rerport: ${repo}`,
             html: template,
         };
