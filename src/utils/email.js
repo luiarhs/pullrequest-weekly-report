@@ -21,7 +21,8 @@ async function send(context, parameters) {
             const stateColors = {
                 open: '#238636',
                 merged: '#8957e5',
-                inprogress: '#6e7680'
+                inprogress: '#6e7680',
+                closed: '#da3633'
             };
               
             const color = stateColors[state];
@@ -47,7 +48,7 @@ async function send(context, parameters) {
 
         const msg = {
             to,
-            from: 'noreply@kief.mx',
+            from: `${process.env.SENDGRID_SENDER_EMAIL}`,
             subject: `Your Weekly Rerport: ${repo}`,
             html: template,
         };
