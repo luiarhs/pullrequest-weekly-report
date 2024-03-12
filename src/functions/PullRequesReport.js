@@ -5,18 +5,18 @@ const email = require("../utils/email");
 app.http("PullRequestReport", {
 	methods: ["POST"],
 	authLevel: "anonymous",
-    route: 'report/{owner:alpha}/{repo:alpha}',
+    route: 'report/',
 	handler: async (request, context) => {
 		context.log(`Http function processed request for url "${request.url}"`);
-
+		// Create a new Octokit client
 		const octokit = new Octokit({
             auth: `${process.env.GITHUB_TOKEN}`
         });
 
 		try {
 			// TODO: Make variables configurable as function input or environment variables
-			const repo = request.params.repo;
-			const owner = request.params.owner;
+			const repo = `${process.env.GITHUB_REPO}`; //`${request.params.repo
+			context.log(`Getting pull requests for ${repo}`);
 
 			// Filter pull requests created in the last week
 			const lastWeek = new Date();
@@ -25,7 +25,7 @@ app.http("PullRequestReport", {
 			const data = await octokit.graphql(
 				`query Search {
 					search(
-						query: "repo:${owner}/${repo} type:pr created:>${lastWeek.toISOString()}",
+						query: "repo:${repo} type:pr created:>${lastWeek.toISOString()}",
 						type: ISSUE
 						first: 100
 					) {
