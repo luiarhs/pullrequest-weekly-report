@@ -15,7 +15,10 @@ app.http("PullRequestReport", {
 
 		try {
 			// TODO: Make variables configurable as function input or environment variables
-			const repo = `${process.env.GITHUB_REPO}`; //`${request.params.repo
+			const repo = `${process.env.GITHUB_REPO}`; // "owner/repo"
+			// Send email to the configured address
+			const emailto = `${process.env.EMAIL_TO}`;
+			// TODO: Validate email address previous to send email
 			context.log(`Getting pull requests for ${repo}`);
 
 			// Filter pull requests created in the last week
@@ -60,8 +63,7 @@ app.http("PullRequestReport", {
 				};
 			});
 
-			// Send email
-			await email.send(context, {to: "luiarhs@gmail.com", repo, pulls});
+			await email.send(context, {to: emailto, repo, pulls});
 
 		} catch (error) {
 			if (error instanceof GraphqlResponseError) {

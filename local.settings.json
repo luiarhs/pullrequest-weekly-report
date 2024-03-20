@@ -4,6 +4,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
     "AzureWebJobsStorage": "",
+    "EMAIL_TO": "",
     "GITHUB_URL": "https://api.github.com/graphql",
     "GITHUB_TOKEN": "",
     "GITHUB_REPO": "",
