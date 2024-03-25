@@ -44,7 +44,7 @@ async function send(context, parameters) {
                 </tr>`;
         });
 
-        const template = header + body + footer;
+        const template = header + body + footer; 
 
         const msg = {
             to,

@@ -8,7 +8,7 @@ app.http("PullRequestReport", {
     route: 'report/',
 	handler: async (request, context) => {
 		context.log(`Http function processed request for url "${request.url}"`);
-		// Create a new Octokit client
+		// Create a new Octokit client instance
 		const octokit = new Octokit({
             auth: `${process.env.GITHUB_TOKEN}`
         });
