@@ -26,14 +26,21 @@ https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cl
 
 ### Environment Variables
 
-the function uses the following environment variables:
+the function uses the following environment variables in the local.settings.json file or in the Azure portal:
 
-"FUNCTIONS_WORKER_RUNTIME": "node",
-"AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
-"AzureWebJobsStorage": "UseDevelopmentStorage=true", // or your Azure Storage connection string
-"EMAIL_TO": "to@email.com",
-"GITHUB_URL": "https://api.github.com/graphql",
-"GITHUB_TOKEN": "ghp_key",
-"GITHUB_REPO": "owner/repo",
-"SENDGRID_API_KEY": "SG.-key",
-"SENDGRID_FROM_EMAIL": "from@email.com"
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true", // or your Azure Storage connection string
+    "EMAIL_TO": "to@email.com",
+    "GITHUB_URL": "https://api.github.com/graphql",
+    "GITHUB_TOKEN": "ghp_key",
+    "GITHUB_REPO": "owner/repo",
+    "SENDGRID_API_KEY": "SG.-key",
+    "SENDGRID_FROM_EMAIL": "from@email.com"
+  }
+}
+```
