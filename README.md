@@ -22,5 +22,18 @@ use command-line tools to create a JavaScript function that responds to HTTP req
 
 `func start`
 
-
 https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-node?tabs=macos%2Cazure-cli%2Cbrowser&pivots=nodejs-model-v4
+
+### Environment Variables
+
+the function uses the following environment variables:
+
+"FUNCTIONS_WORKER_RUNTIME": "node",
+"AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+"AzureWebJobsStorage": "UseDevelopmentStorage=true", // or your Azure Storage connection string
+"EMAIL_TO": "to@email.com",
+"GITHUB_URL": "https://api.github.com/graphql",
+"GITHUB_TOKEN": "ghp_key",
+"GITHUB_REPO": "owner/repo",
+"SENDGRID_API_KEY": "SG.-key",
+"SENDGRID_FROM_EMAIL": "from@email.com"
