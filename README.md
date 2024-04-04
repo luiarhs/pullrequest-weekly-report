@@ -1,6 +1,6 @@
-# Sail Point challenge
+# Pull requests weekly report
 
-SailPoint home coding challenge
+Azure Function App that will use the GitHub API to retrieve a summary of all opened, closed, and in progress pull requests in the last week for a given repository and print an email summary report that might be sent to a given email.
 
 ## Configure your local environment
 
